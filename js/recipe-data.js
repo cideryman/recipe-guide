@@ -24,9 +24,9 @@ const RECIPE_DATA = {
         image: "assets/aeropress/step-02.png",
         instruction: [
           "저울에 원두 컵을 올려요.",
-          "원두 20g을 담아요."
+          "저울 화면에 '20.0'이 나올 때까지 원두를 담아요."
         ],
-        speech: "저울에 원두 컵을 올리고, 원두 이십 그램을 담아주세요.",
+        speech: "저울에 원두 컵을 올리고, 저울 화면에 이십 점 영이라는 숫자가 나올 때까지 원두를 담아주세요.",
         type: "normal"
       },
       {
@@ -86,9 +86,9 @@ const RECIPE_DATA = {
         title: "물 붓기",
         image: "assets/aeropress/step-08.png",
         instruction: [
-          "뜨거운 물 100ml를 천천히 부어요."
+          "저울 화면에 '100.0'이 나올 때까지 뜨거운 물을 천천히 부어요."
         ],
-        speech: "뜨거운 물 백 밀리리터를 천천히 부어주세요.",
+        speech: "저울 화면에 백 점 영이 나올 때까지 뜨거운 물을 천천히 부어주세요.",
         type: "normal"
       },
       {

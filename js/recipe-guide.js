@@ -113,7 +113,7 @@ const RecipeGuide = (function() {
           </div>
 
           <div class="recipe-guide-nav">
-            <button id="rg-btn-prev" class="recipe-guide-btn-prev">이전</button>
+            <button id="rg-btn-prev" class="recipe-guide-btn-prev">이전 단계</button>
             <button id="rg-btn-next" class="recipe-guide-btn-next">다 했어요</button>
           </div>
         </div>
@@ -252,6 +252,10 @@ const RecipeGuide = (function() {
       timerHTML = `
         <div class="recipe-guide-timer-container">
           <div id="rg-timer-display" class="recipe-guide-timer-display">${formatTime(state.timerRemaining)}</div>
+          <!-- 시간 양적 변화 시각화를 위한 게이지 추가 -->
+          <div style="width: 100%; height: 16px; background-color: #E5E7EB; border-radius: 8px; margin: 1rem 0; overflow: hidden; position: relative; border: 1px solid #D1D5DB;">
+            <div id="rg-timer-progress-fill" style="width: 100%; height: 100%; background-color: #F59E0B; transition: width 1s linear; border-radius: 8px;"></div>
+          </div>
           <div class="recipe-guide-timer-controls">
             <button id="rg-btn-timer-toggle" class="recipe-guide-btn-timer">타이머 시작</button>
           </div>
@@ -396,6 +400,11 @@ const RecipeGuide = (function() {
       // 시작
       if (state.timerRemaining <= 0) {
         state.timerRemaining = state.recipe.steps[state.currentStepIndex].duration;
+        const progressFill = document.getElementById('rg-timer-progress-fill');
+        if (progressFill) {
+          progressFill.style.width = '100%';
+          progressFill.style.backgroundColor = '#F59E0B';
+        }
       }
       
       btn.textContent = '타이머 일시정지';
@@ -409,8 +418,14 @@ const RecipeGuide = (function() {
           display.textContent = formatTime(state.timerRemaining);
         }
         
+        const progressFill = document.getElementById('rg-timer-progress-fill');
+        if (progressFill) {
+          const duration = state.recipe.steps[state.currentStepIndex].duration;
+          progressFill.style.width = `${(state.timerRemaining / duration) * 100}%`;
+        }
+        
         if (state.timerRemaining <= 0) {
-          timerComplete();
+           timerComplete();
         }
       }, 1000);
     }
@@ -430,6 +445,13 @@ const RecipeGuide = (function() {
       display.textContent = "00";
       display.style.color = 'var(--rg-success)';
     }
+
+    const progressFill = document.getElementById('rg-timer-progress-fill');
+    if (progressFill) {
+      progressFill.style.width = '0%';
+      progressFill.style.backgroundColor = 'var(--rg-success)';
+    }
+
     if (btn) {
       btn.textContent = '다 되었습니다!';
       btn.disabled = true;
