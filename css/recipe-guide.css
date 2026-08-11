@@ -565,20 +565,35 @@
    ========================================================================== */
 .recipe-guide-home {
   padding: 2rem 1.5rem;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   overflow-y: auto;
+}
+
+.recipe-guide-main-header {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.recipe-guide-main-title-tag {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #F97316; /* 배달왔삼 포인트 주황색 */
+  display: block;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
 }
 
 .recipe-guide-main-title {
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--rg-primary);
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  text-align: center;
+  margin: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5rem;
 }
 
@@ -591,9 +606,10 @@
 .recipe-guide-main-subtitle {
   font-size: 1.125rem;
   color: var(--rg-text-muted);
-  margin-bottom: 2rem;
-  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
   font-weight: 600;
+  text-align: left;
 }
 
 .recipe-guide-menu-list {

@@ -300,11 +300,14 @@ const RecipeGuide = (function() {
     const recipes = Object.values(window.RECIPE_DATA || {});
     
     const html = `
-      <h1 class="recipe-guide-main-title">
-        차근차근 카페 레시피
-        <img src="assets/baedalwatsam/dalgomi_thumb.png" alt="" class="recipe-guide-main-title-icon">
-      </h1>
-      <p class="recipe-guide-main-subtitle">오늘 만들 음료를 선택하세요.</p>
+      <div class="recipe-guide-main-header">
+        <span class="recipe-guide-main-title-tag">차근차근</span>
+        <h1 class="recipe-guide-main-title">
+          카페 레시피
+          <img src="assets/baedalwatsam/dalgomi_thumb.png" alt="" class="recipe-guide-main-title-icon">
+        </h1>
+        <p class="recipe-guide-main-subtitle">오늘 만들 음료를 선택하세요.</p>
+      </div>
       <div class="recipe-guide-menu-list">
         ${recipes.map(r => `
           <button class="recipe-guide-menu-card ${r.comingSoon ? 'coming-soon' : ''}" data-recipe-id="${r.id}" ${r.comingSoon ? 'disabled' : ''}>
