@@ -167,7 +167,7 @@ const RecipeGuide = (function() {
 
         <!-- Complete Screen -->
         <div id="rg-screen-complete" class="recipe-guide-screen recipe-guide-complete">
-          <div class="recipe-guide-complete-icon">✓</div>
+          <img src="assets/baedalwatsam/dalgomi_cheer.png" alt="성공!" class="recipe-guide-complete-character">
           <h2 class="recipe-guide-complete-title">모두 끝났어요!</h2>
           <p class="recipe-guide-complete-msg">수고하셨습니다. 맛있는 음료가 완성되었습니다.</p>
           <button id="rg-btn-restart" class="recipe-guide-btn-primary" style="margin-bottom: 1rem;">처음부터 다시 하기</button>
@@ -290,12 +290,15 @@ const RecipeGuide = (function() {
     const recipes = Object.values(window.RECIPE_DATA || {});
     
     const html = `
+      <div class="recipe-guide-home-logo-container">
+        <img src="assets/baedalwatsam/store-logo.png" alt="배달왔삼 로고" class="recipe-guide-home-logo">
+      </div>
       <h1 class="recipe-guide-main-title">차근차근 카페 레시피</h1>
       <p class="recipe-guide-main-subtitle">오늘 만들 음료를 선택하세요.</p>
       <div class="recipe-guide-menu-list">
         ${recipes.map(r => `
           <button class="recipe-guide-menu-card ${r.comingSoon ? 'coming-soon' : ''}" data-recipe-id="${r.id}" ${r.comingSoon ? 'disabled' : ''}>
-            <img src="${r.coverImage}" alt="" class="recipe-guide-menu-img" onerror="this.src='https://placehold.co/150?text=Image'">
+            <img src="${r.comingSoon ? 'assets/baedalwatsam/closed-character.png' : r.coverImage}" alt="" class="recipe-guide-menu-img" onerror="this.src='https://placehold.co/150?text=Image'">
             <div class="recipe-guide-menu-info">
               <h2 class="recipe-guide-menu-title">${r.title}</h2>
               ${r.comingSoon ? 
