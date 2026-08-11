@@ -22,17 +22,6 @@ const RecipeGuide = (function() {
    * @param {string} recipeId 
    */
   function init(recipeId) {
-    if (!window.RECIPE_DATA || !window.RECIPE_DATA[recipeId]) {
-      console.error(`Recipe ${recipeId} not found.`);
-      document.getElementById('recipe-guide-app').innerHTML = `<p>레시피를 찾을 수 없습니다.</p>`;
-      return;
-    }
-
-    state.recipe = window.RECIPE_DATA[recipeId];
-    
-    // 이전 상태 불러오기
-    loadState(recipeId);
-
     // 기본 HTML 구조 생성
     renderAppStructure();
     
@@ -42,7 +31,25 @@ const RecipeGuide = (function() {
     // 이벤트 리스너 바인딩
     bindEvents();
 
-    // 시작 화면 표시 (현재 진행 중인 단계가 있으면 step 화면으로)
+    if (recipeId && window.RECIPE_DATA && window.RECIPE_DATA[recipeId]) {
+      loadRecipe(recipeId);
+    } else {
+      showScreen('home');
+      renderHome();
+    }
+  }
+
+  function loadRecipe(recipeId) {
+    if (!window.RECIPE_DATA || !window.RECIPE_DATA[recipeId]) {
+      console.error(`Recipe ${recipeId} not found.`);
+      showScreen('home');
+      renderHome();
+      return;
+    }
+
+    state.recipe = window.RECIPE_DATA[recipeId];
+    loadState(recipeId);
+
     if (state.currentStepIndex > 0 || state.completedSteps.length > 0) {
       if (state.completedSteps.length === state.recipe.steps.length) {
         showScreen('complete');
@@ -90,6 +97,9 @@ const RecipeGuide = (function() {
     const app = document.getElementById('recipe-guide-app');
     app.innerHTML = `
       <div class="recipe-guide-container" aria-live="polite">
+        <!-- Home Screen (Menu Selection) -->
+        <div id="rg-screen-home" class="recipe-guide-screen recipe-guide-home"></div>
+
         <!-- Start Screen -->
         <div id="rg-screen-start" class="recipe-guide-screen recipe-guide-start"></div>
         
@@ -146,14 +156,16 @@ const RecipeGuide = (function() {
         <div id="rg-screen-complete" class="recipe-guide-screen recipe-guide-complete">
           <div class="recipe-guide-complete-icon">✓</div>
           <h2 class="recipe-guide-complete-title">모두 끝났어요!</h2>
-          <p class="recipe-guide-complete-msg">수고하셨습니다. 맛있는 커피가 완성되었습니다.</p>
-          <button id="rg-btn-restart" class="recipe-guide-btn-primary">처음부터 다시 하기</button>
+          <p class="recipe-guide-complete-msg">수고하셨습니다. 맛있는 음료가 완성되었습니다.</p>
+          <button id="rg-btn-restart" class="recipe-guide-btn-primary" style="margin-bottom: 1rem;">처음부터 다시 하기</button>
+          <button id="rg-btn-go-home-complete" class="recipe-guide-btn-secondary">다른 음료 만들기</button>
         </div>
       </div>
     `;
   }
 
   function cacheDOM() {
+    els.home = document.getElementById('rg-screen-home');
     els.start = document.getElementById('rg-screen-start');
     els.step = document.getElementById('rg-screen-step');
     els.overview = document.getElementById('rg-screen-overview');
@@ -169,6 +181,7 @@ const RecipeGuide = (function() {
     els.btnHideOverview = document.getElementById('rg-btn-hide-overview');
     els.btnTtsToggle = document.getElementById('rg-btn-tts-toggle');
     els.btnGoHome = document.getElementById('rg-btn-go-home');
+    els.btnGoHomeComplete = document.getElementById('rg-btn-go-home-complete');
     els.btnRestart = document.getElementById('rg-btn-restart');
     els.overviewGrid = document.getElementById('rg-overview-grid');
   }
@@ -187,9 +200,16 @@ const RecipeGuide = (function() {
     els.btnGoHome.addEventListener('click', () => {
       stopSpeech();
       stopTimer();
-      resetState();
-      showScreen('start');
-      renderStart();
+      state.recipe = null;
+      showScreen('home');
+      renderHome();
+    });
+    els.btnGoHomeComplete.addEventListener('click', () => {
+      stopSpeech();
+      stopTimer();
+      state.recipe = null;
+      showScreen('home');
+      renderHome();
     });
     els.btnRestart.addEventListener('click', () => {
       resetState();
@@ -199,6 +219,18 @@ const RecipeGuide = (function() {
 
     // Event delegation for dynamically created elements
     document.getElementById('recipe-guide-app').addEventListener('click', (e) => {
+      // 메뉴 카드 선택
+      const menuCard = e.target.closest('.recipe-guide-menu-card');
+      if (menuCard && !menuCard.classList.contains('coming-soon')) {
+        const recipeId = menuCard.dataset.recipeId;
+        loadRecipe(recipeId);
+      }
+      // 다른 음료 선택하기 버튼 (시작 화면에서 홈으로)
+      if (e.target.closest('#rg-btn-go-home-start')) {
+        state.recipe = null;
+        showScreen('home');
+        renderHome();
+      }
       // 시작 버튼
       if (e.target.closest('#rg-btn-start')) {
         showScreen('step');
@@ -221,13 +253,37 @@ const RecipeGuide = (function() {
   }
 
   function showScreen(screenId) {
-    [els.start, els.step, els.overview, els.complete].forEach(el => {
-      el.classList.remove('active');
+    [els.home, els.start, els.step, els.overview, els.complete].forEach(el => {
+      if (el) el.classList.remove('active');
     });
-    els[screenId].classList.add('active');
+    if (els[screenId]) els[screenId].classList.add('active');
     
     stopSpeech();
     stopTimer();
+  }
+
+  function renderHome() {
+    if (!els.home) return;
+    const recipes = Object.values(window.RECIPE_DATA || {});
+    
+    const html = `
+      <h1 class="recipe-guide-main-title">차근차근 카페 레시피</h1>
+      <p class="recipe-guide-main-subtitle">오늘 만들 음료를 선택하세요.</p>
+      <div class="recipe-guide-menu-list">
+        ${recipes.map(r => `
+          <button class="recipe-guide-menu-card ${r.comingSoon ? 'coming-soon' : ''}" data-recipe-id="${r.id}" ${r.comingSoon ? 'disabled' : ''}>
+            <img src="${r.coverImage}" alt="" class="recipe-guide-menu-img" onerror="this.src='https://placehold.co/150?text=Image'">
+            <div class="recipe-guide-menu-info">
+              <h2 class="recipe-guide-menu-title">${r.title}</h2>
+              ${r.comingSoon ? 
+                '<span class="recipe-guide-badge">준비 중</span>' : 
+                '<span class="recipe-guide-badge active">바로 시작</span>'}
+            </div>
+          </button>
+        `).join('')}
+      </div>
+    `;
+    els.home.innerHTML = html;
   }
 
   function renderStart() {
@@ -236,6 +292,7 @@ const RecipeGuide = (function() {
       <img src="${state.recipe.coverImage}" alt="완성된 ${state.recipe.title}" class="recipe-guide-cover-img" onerror="this.src='https://placehold.co/400?text=Image'">
       <button id="rg-btn-start" class="recipe-guide-btn-primary">시작하기</button>
       <button class="recipe-guide-btn-secondary" onclick="document.getElementById('rg-btn-show-overview').click()">전체 순서 보기</button>
+      <button id="rg-btn-go-home-start" class="recipe-guide-btn-text" style="margin-top: 1.5rem; color: var(--rg-text-muted); font-weight: 600; text-decoration: underline;">다른 음료 선택하기</button>
     `;
   }
 
@@ -513,10 +570,9 @@ const RecipeGuide = (function() {
   };
 })();
 
-// 페이지가 로드되면 기본적으로 aeropress를 엽니다.
+// 페이지가 로드되면 초기화합니다.
 document.addEventListener('DOMContentLoaded', () => {
-  // 향후 URL 파라미터로 특정 레시피를 여는 기능
   const urlParams = new URLSearchParams(window.location.search);
   const recipeParam = urlParams.get('recipe');
-  RecipeGuide.open(recipeParam || 'aeropress');
+  RecipeGuide.open(recipeParam);
 });

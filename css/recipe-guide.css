@@ -559,3 +559,118 @@
     flex-direction: column;
   }
 }
+
+/* ==========================================================================
+   Home Screen (Menu Selection)
+   ========================================================================== */
+.recipe-guide-home {
+  padding: 2rem 1.5rem;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.recipe-guide-main-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--rg-primary);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.recipe-guide-main-subtitle {
+  font-size: 1.125rem;
+  color: var(--rg-text-muted);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.recipe-guide-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.recipe-guide-menu-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  border: 2px solid var(--rg-border);
+  border-radius: 16px;
+  padding: 1rem;
+  gap: 1rem;
+  text-align: left;
+  transition: all 0.2s;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.recipe-guide-menu-card:hover:not(.coming-soon) {
+  transform: translateY(-2px);
+  border-color: var(--rg-primary);
+  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1);
+}
+
+.recipe-guide-menu-card.coming-soon {
+  opacity: 0.6;
+  background-color: #F3F4F6;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+
+.recipe-guide-menu-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--rg-border);
+  background-color: #f3f4f6;
+}
+
+.recipe-guide-menu-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.recipe-guide-menu-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--rg-text-main);
+  line-height: 1.3;
+}
+
+.recipe-guide-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  background-color: #E5E7EB;
+  color: #4B5563;
+  border-radius: 6px;
+  align-self: flex-start;
+}
+
+.recipe-guide-badge.active {
+  background-color: #EEF2FF;
+  color: var(--rg-primary);
+  border: 1px solid #C7D2FE;
+}
+
+.recipe-guide-btn-text {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
