@@ -796,3 +796,14 @@
 
 
 
+
+/* Keep only the active app screen visible.
+   Some screen-specific classes define their own flex layout, so these rules
+   intentionally live at the end of the file. */
+#recipe-guide-app .recipe-guide-screen:not(.active) {
+  display: none;
+}
+
+#recipe-guide-app .recipe-guide-screen.active {
+  display: flex;
+}
