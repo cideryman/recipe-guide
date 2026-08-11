@@ -5,12 +5,12 @@ const RECIPE_DATA = {
   aeropress: {
     id: "aeropress",
     title: "에어로프레스 아이스커피",
-    coverImage: "assets/aeropress/step-11.png", // 완성된 컵 이미지를 표지로 사용
+    coverImage: "assets/aeropress/step-11.jpg", // 완성된 컵 이미지를 표지로 사용
     steps: [
       {
         id: 1,
         title: "물 끓이기",
-        image: "assets/aeropress/step-01.png",
+        image: "assets/aeropress/step-01.jpg",
         instruction: [
           "전기 주전자에 물을 넣어요.",
           "전원 버튼을 눌러 물을 끓여요."
@@ -21,7 +21,7 @@ const RECIPE_DATA = {
       {
         id: 2,
         title: "커피 무게 재기",
-        image: "assets/aeropress/step-02.png",
+        image: "assets/aeropress/step-02.jpg",
         instruction: [
           "저울에 원두 컵을 올려요.",
           "저울 화면에 '20.0'이 나올 때까지 원두를 담아요."
@@ -32,7 +32,7 @@ const RECIPE_DATA = {
       {
         id: 3,
         title: "커피 갈기",
-        image: "assets/aeropress/step-03.png",
+        image: "assets/aeropress/step-03.jpg",
         instruction: [
           "전동 그라인더에 원두를 넣어요.",
           "스위치를 눌러 원두를 갈아요."
@@ -43,7 +43,7 @@ const RECIPE_DATA = {
       {
         id: 4,
         title: "필터 준비하기",
-        image: "assets/aeropress/step-04.png",
+        image: "assets/aeropress/step-04.jpg",
         instruction: [
           "종이 필터를 캡에 끼워요.",
           "뜨거운 물을 살짝 부어 적셔요."
@@ -54,7 +54,7 @@ const RECIPE_DATA = {
       {
         id: 5,
         title: "에어로프레스 준비하기",
-        image: "assets/aeropress/step-05.png",
+        image: "assets/aeropress/step-05.jpg",
         instruction: [
           "에어로프레스 본체를 컵 위에 올려요."
         ],
@@ -64,7 +64,7 @@ const RECIPE_DATA = {
       {
         id: 6,
         title: "얼음 담기",
-        image: "assets/aeropress/step-06.png",
+        image: "assets/aeropress/step-06.jpg",
         instruction: [
           "준비한 컵에 얼음을 가득 담아요."
         ],
@@ -74,7 +74,7 @@ const RECIPE_DATA = {
       {
         id: 7,
         title: "원두 넣기",
-        image: "assets/aeropress/step-07.png",
+        image: "assets/aeropress/step-07.jpg",
         instruction: [
           "갈아둔 커피 가루를 에어로프레스 안에 부어요."
         ],
@@ -84,7 +84,7 @@ const RECIPE_DATA = {
       {
         id: 8,
         title: "물 붓기",
-        image: "assets/aeropress/step-08.png",
+        image: "assets/aeropress/step-08.jpg",
         instruction: [
           "저울 화면에 '100.0'이 나올 때까지 뜨거운 물을 천천히 부어요."
         ],
@@ -94,7 +94,7 @@ const RECIPE_DATA = {
       {
         id: 9,
         title: "저어주기",
-        image: "assets/aeropress/step-09.png",
+        image: "assets/aeropress/step-09.jpg",
         instruction: [
           "스틱으로 10번 정도 저어줘요."
         ],
@@ -104,7 +104,7 @@ const RECIPE_DATA = {
       {
         id: 10,
         title: "기다리기",
-        image: "assets/aeropress/step-09.png",
+        image: "assets/aeropress/step-09.jpg",
         instruction: [
           "60초 동안 기다려요."
         ],
@@ -115,7 +115,7 @@ const RECIPE_DATA = {
       {
         id: 11,
         title: "천천히 눌러 내리기",
-        image: "assets/aeropress/step-10.png",
+        image: "assets/aeropress/step-10.jpg",
         instruction: [
           "플런저를 끼우고 30초 동안 천천히 눌러요.",
           "쉬익 소리가 나면 멈춰요."
@@ -126,7 +126,7 @@ const RECIPE_DATA = {
       {
         id: 12,
         title: "컵에 담아 완성",
-        image: "assets/aeropress/step-11.png",
+        image: "assets/aeropress/step-11.jpg",
         instruction: [
           "커피가 다 내려졌어요.",
           "맛있게 즐겨요!"
@@ -137,7 +137,7 @@ const RECIPE_DATA = {
       {
         id: 13,
         title: "정리 - 찌꺼기 버리기",
-        image: "assets/aeropress/step-12.png",
+        image: "assets/aeropress/step-12.jpg",
         instruction: [
           "캡을 열고 플런저를 끝까지 밀어요.",
           "커피 찌꺼기를 쓰레기통에 버려요."
@@ -148,7 +148,7 @@ const RECIPE_DATA = {
       {
         id: 14,
         title: "물로 헹구기",
-        image: "assets/aeropress/step-13.png",
+        image: "assets/aeropress/step-13.jpg",
         instruction: [
           "사용한 에어로프레스를 물로 깨끗하게 헹궈요."
         ],
