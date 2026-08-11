@@ -353,6 +353,7 @@ const RecipeGuide = (function() {
         els.btnNext.disabled = true;
         
         // 모달 활성화 및 리셋
+        stopTimer();
         state.timerRemaining = step.duration;
         if (els.timerModalDisplay) {
           els.timerModalDisplay.textContent = formatTime(state.timerRemaining);
@@ -363,15 +364,31 @@ const RecipeGuide = (function() {
           els.timerModalProgress.style.backgroundColor = '#F59E0B';
         }
         if (els.btnModalTimerToggle) {
-          els.btnModalTimerToggle.textContent = '기다리기 시작';
+          els.btnModalTimerToggle.textContent = '기다리기 일시정지';
           els.btnModalTimerToggle.disabled = false;
           els.btnModalTimerToggle.style.backgroundColor = '#F59E0B';
           els.btnModalTimerToggle.style.color = 'white';
-          els.btnModalTimerToggle.classList.remove('stop');
+          els.btnModalTimerToggle.classList.add('stop');
         }
         if (els.timerModal) {
           els.timerModal.classList.add('active');
         }
+
+        // 카운트다운 즉시 자동 시작
+        state.isTimerRunning = true;
+        state.timerInterval = setInterval(() => {
+          state.timerRemaining--;
+          if (els.timerModalDisplay) {
+            els.timerModalDisplay.textContent = formatTime(state.timerRemaining);
+          }
+          if (els.timerModalProgress) {
+            const duration = state.recipe.steps[state.currentStepIndex].duration;
+            els.timerModalProgress.style.width = `${(state.timerRemaining / duration) * 100}%`;
+          }
+          if (state.timerRemaining <= 0) {
+             timerComplete();
+          }
+        }, 1000);
       } else {
         els.btnNext.disabled = false;
         if (els.timerModal) {
