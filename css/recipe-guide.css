@@ -709,14 +709,39 @@
   flex-direction: column;
   align-items: center;
   border: 3px solid var(--rg-primary); /* 강조 테두리 */
+  position: relative; /* 자식 요소 절대 배치를 위해 추가 */
 }
 
 .recipe-guide-timer-modal-title {
   font-size: 1.75rem;
   font-weight: 800;
-  margin-top: 0;
+  margin-top: 0.5rem;
   margin-bottom: 1rem;
   color: var(--rg-text-main);
 }
+
+.recipe-guide-timer-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--rg-text-muted);
+  border: none;
+  background: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  z-index: 110;
+}
+
+.recipe-guide-timer-modal-close:hover {
+  color: var(--rg-text-main);
+}
+
 
 

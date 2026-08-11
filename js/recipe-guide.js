@@ -100,6 +100,7 @@ const RecipeGuide = (function() {
         <!-- Timer Modal Overlay -->
         <div id="rg-timer-modal" class="recipe-guide-timer-modal">
           <div class="recipe-guide-timer-modal-content">
+            <button id="rg-btn-modal-timer-close" class="recipe-guide-timer-modal-close" aria-label="타이머 닫기" title="닫기">✕</button>
             <h2 class="recipe-guide-timer-modal-title">잠시 기다려요</h2>
             <div id="rg-timer-modal-display" class="recipe-guide-timer-display">00:00</div>
             <div style="width: 100%; height: 16px; background-color: #E5E7EB; border-radius: 8px; margin: 1.5rem 0; overflow: hidden; position: relative; border: 1px solid #D1D5DB;">
@@ -187,6 +188,7 @@ const RecipeGuide = (function() {
     els.timerModalDisplay = document.getElementById('rg-timer-modal-display');
     els.timerModalProgress = document.getElementById('rg-timer-modal-progress');
     els.btnModalTimerToggle = document.getElementById('rg-btn-modal-timer-toggle');
+    els.btnModalTimerClose = document.getElementById('rg-btn-modal-timer-close');
 
     els.progressText = document.getElementById('rg-progress-text');
     els.progressFill = document.getElementById('rg-progress-fill');
@@ -215,6 +217,13 @@ const RecipeGuide = (function() {
     });
     els.btnTtsToggle.addEventListener('click', toggleTts);
     els.btnModalTimerToggle.addEventListener('click', toggleTimer);
+    els.btnModalTimerClose.addEventListener('click', () => {
+      stopTimer();
+      if (els.timerModal) {
+        els.timerModal.classList.remove('active');
+      }
+      els.btnNext.disabled = false;
+    });
     els.btnGoHome.addEventListener('click', () => {
       stopSpeech();
       stopTimer();
