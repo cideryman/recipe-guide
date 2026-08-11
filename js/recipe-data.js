@@ -20,7 +20,7 @@ const RECIPE_DATA = {
       },
       {
         id: 2,
-        title: "커피 무게 재기",
+        title: "커피 저울에 재기",
         image: "assets/aeropress/step-02.jpg",
         instruction: [
           "저울에 원두 컵을 올려요.",
@@ -45,10 +45,10 @@ const RECIPE_DATA = {
         title: "필터 준비하기",
         image: "assets/aeropress/step-04.jpg",
         instruction: [
-          "종이 필터를 캡에 끼워요.",
+          "종이 필터를 검정 뚜껑에 끼워요.",
           "뜨거운 물을 살짝 부어 적셔요."
         ],
-        speech: "종이 필터를 캡에 끼우고 뜨거운 물을 살짝 부어 적셔주세요.",
+        speech: "종이 필터를 검정 뚜껑에 끼우고 뜨거운 물을 살짝 부어 적셔주세요.",
         type: "normal"
       },
       {
@@ -117,10 +117,10 @@ const RECIPE_DATA = {
         title: "천천히 눌러 내리기",
         image: "assets/aeropress/step-10.jpg",
         instruction: [
-          "플런저를 끼우고 30초 동안 천천히 눌러요.",
+          "눌러내리는 막대를 끼우고 천천히 끝까지 눌러요.",
           "쉬익 소리가 나면 멈춰요."
         ],
-        speech: "플런저를 끼우고 삼십 초 동안 천천히 눌러주세요. 쉬익 소리가 나면 멈춰주세요.",
+        speech: "눌러내리는 막대를 끼우고 천천히 끝까지 눌러주세요. 쉬익 소리가 나면 멈춰주세요.",
         type: "normal"
       },
       {
@@ -136,13 +136,13 @@ const RECIPE_DATA = {
       },
       {
         id: 13,
-        title: "정리 - 찌꺼기 버리기",
+        title: "찌꺼기 버리기",
         image: "assets/aeropress/step-12.jpg",
         instruction: [
-          "캡을 열고 플런저를 끝까지 밀어요.",
+          "검정 뚜껑을 열고 막대를 끝까지 밀어요.",
           "커피 찌꺼기를 쓰레기통에 버려요."
         ],
-        speech: "캡을 열고 플런저를 끝까지 밀어 커피 찌꺼기를 쓰레기통에 버려주세요.",
+        speech: "검정 뚜껑을 열고 막대를 끝까지 밀어 커피 찌꺼기를 쓰레기통에 버려주세요.",
         type: "normal"
       },
       {
@@ -150,9 +150,9 @@ const RECIPE_DATA = {
         title: "물로 헹구기",
         image: "assets/aeropress/step-13.jpg",
         instruction: [
-          "사용한 에어로프레스를 물로 깨끗하게 헹궈요."
+          "사용한 도구를 물로 깨끗이 씻어요."
         ],
-        speech: "사용한 에어로프레스를 흐르는 물로 깨끗하게 헹궈주세요.",
+        speech: "사용한 도구를 흐르는 물로 깨끗이 씻어주세요.",
         type: "normal"
       }
     ]

@@ -8,7 +8,7 @@ const RecipeGuide = (function() {
     isTimerRunning: false,
     synth: window.speechSynthesis,
     isSpeaking: false,
-    isTtsEnabled: false
+    isTtsEnabled: true
   };
 
   // DOM 요소 참조를 저장할 변수
@@ -30,6 +30,9 @@ const RecipeGuide = (function() {
     
     // 이벤트 리스너 바인딩
     bindEvents();
+    
+    // TTS 버튼 UI 동기화 (기본값 ON 반영)
+    syncTtsButtonUI();
 
     if (recipeId && window.RECIPE_DATA && window.RECIPE_DATA[recipeId]) {
       loadRecipe(recipeId);
@@ -376,6 +379,9 @@ const RecipeGuide = (function() {
 
         // 카운트다운 즉시 자동 시작
         state.isTimerRunning = true;
+        if (els.btnModalTimerClose) {
+          els.btnModalTimerClose.style.display = 'none';
+        }
         state.timerInterval = setInterval(() => {
           state.timerRemaining--;
           if (els.timerModalDisplay) {
@@ -403,11 +409,11 @@ const RecipeGuide = (function() {
     }
 
     els.stepContent.innerHTML = `
+      <h2 class="recipe-guide-step-title">${step.title}</h2>
       <div class="recipe-guide-step-image-container">
         <img src="${step.image}" alt="${step.title} 이미지" class="recipe-guide-step-image" onerror="this.src='https://placehold.co/400?text=No+Image'">
       </div>
       <div class="recipe-guide-step-details">
-        <h2 class="recipe-guide-step-title">${step.title}</h2>
         <div class="recipe-guide-step-instructions">
           ${instructionsHTML}
         </div>
@@ -474,26 +480,28 @@ const RecipeGuide = (function() {
   }
 
   // --- Speech API ---
+  function syncTtsButtonUI() {
+    if (!els.btnTtsToggle) return;
+    els.btnTtsToggle.style.backgroundColor = state.isTtsEnabled ? 'var(--rg-primary)' : 'var(--rg-bg)';
+    els.btnTtsToggle.style.color = state.isTtsEnabled ? 'white' : 'var(--rg-text-main)';
+    
+    const span = els.btnTtsToggle.querySelector('span');
+    if (span) {
+      span.textContent = state.isTtsEnabled ? '음성 끄기' : '음성 켜기';
+    }
+    
+    const svg = els.btnTtsToggle.querySelector('svg');
+    if (svg) {
+      svg.innerHTML = state.isTtsEnabled ? 
+        `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>` :
+        `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
+    }
+  }
+
   function toggleTts() {
     if (!state.synth) return;
     state.isTtsEnabled = !state.isTtsEnabled;
-    
-    if (els.btnTtsToggle) {
-      els.btnTtsToggle.style.backgroundColor = state.isTtsEnabled ? 'var(--rg-primary)' : 'var(--rg-bg)';
-      els.btnTtsToggle.style.color = state.isTtsEnabled ? 'white' : 'var(--rg-text-main)';
-      
-      const span = els.btnTtsToggle.querySelector('span');
-      if (span) {
-        span.textContent = state.isTtsEnabled ? '음성 끄기' : '음성 켜기';
-      }
-      
-      const svg = els.btnTtsToggle.querySelector('svg');
-      if (svg) {
-        svg.innerHTML = state.isTtsEnabled ? 
-          `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>` :
-          `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
-      }
-    }
+    syncTtsButtonUI();
 
     if (state.isTtsEnabled) {
       speakCurrentStep();
@@ -551,6 +559,9 @@ const RecipeGuide = (function() {
       state.isTimerRunning = false;
       btn.textContent = '기다리기 다시 시작';
       btn.classList.remove('stop');
+      if (els.btnModalTimerClose) {
+        els.btnModalTimerClose.style.display = 'flex';
+      }
     } else {
       // 시작
       if (state.timerRemaining <= 0) {
@@ -564,6 +575,9 @@ const RecipeGuide = (function() {
       btn.textContent = '기다리기 일시정지';
       btn.classList.add('stop');
       state.isTimerRunning = true;
+      if (els.btnModalTimerClose) {
+        els.btnModalTimerClose.style.display = 'none';
+      }
       
       state.timerInterval = setInterval(() => {
         state.timerRemaining--;
@@ -609,6 +623,10 @@ const RecipeGuide = (function() {
       btn.classList.remove('stop');
       btn.style.backgroundColor = 'var(--rg-primary)';
       btn.style.color = 'white';
+    }
+
+    if (els.btnModalTimerClose) {
+      els.btnModalTimerClose.style.display = 'flex';
     }
 
     // 완료 알림음이나 음성

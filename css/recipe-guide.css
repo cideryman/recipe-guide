@@ -138,7 +138,7 @@
 }
 
 .recipe-guide-btn-secondary:hover {
-  background-color: #EEF2FF;
+  background-color: #E6F4F1;
 }
 
 /* ==========================================================================
@@ -211,7 +211,7 @@
 }
 
 .recipe-guide-step-instructions {
-  background-color: #EEF2FF;
+  background-color: #E6F4F1;
   border-radius: 12px;
   padding: 1.5rem;
   font-size: 1.25rem;
@@ -671,9 +671,9 @@
 }
 
 .recipe-guide-badge.active {
-  background-color: #EEF2FF;
+  background-color: #CCFBF1;
   color: var(--rg-primary);
-  border: 1px solid #C7D2FE;
+  border: 1px solid #99F6E4;
 }
 
 .recipe-guide-btn-text {
