@@ -51,6 +51,11 @@ const RecipeGuide = (function() {
     }
 
     state.recipe = window.RECIPE_DATA[recipeId];
+    
+    // 이전 레시피의 진행률 잔재가 남아있지 않도록 상태값 초기화
+    state.currentStepIndex = 0;
+    state.completedSteps = [];
+    
     loadState(recipeId);
 
     if (state.currentStepIndex > 0 || state.completedSteps.length > 0) {
