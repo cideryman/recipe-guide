@@ -371,11 +371,16 @@
 }
 
 .recipe-guide-btn-close-overview {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
   background-color: var(--rg-bg);
   border-radius: 8px;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border: 1px solid var(--rg-border);
 }
 
 .recipe-guide-grid {
