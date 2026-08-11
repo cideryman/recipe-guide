@@ -311,7 +311,7 @@ const RecipeGuide = (function() {
             <img src="${r.comingSoon ? 'assets/baedalwatsam/closed-character.png' : r.coverImage}" alt="" class="recipe-guide-menu-img" onerror="this.src='https://placehold.co/150?text=Image'">
             <div class="recipe-guide-menu-info">
               <h2 class="recipe-guide-menu-title">${r.title}</h2>
-              ${r.comingSoon ? 
+              ${r.comingSoon || r.preparing ? 
                 '<span class="recipe-guide-badge">준비 중</span>' : 
                 '<span class="recipe-guide-badge active">바로 시작</span>'}
             </div>

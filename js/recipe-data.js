@@ -162,6 +162,7 @@ const RECIPE_DATA = {
     title: "바닐라라떼",
     coverImage: "assets/thumbnails/vanilla_latte.jpg",
     comingSoon: false,
+    preparing: true,
     steps: [
       {
         id: 1,
@@ -210,6 +211,7 @@ const RECIPE_DATA = {
     title: "콤부차",
     coverImage: "assets/thumbnails/kombucha.jpg",
     comingSoon: false,
+    preparing: true,
     steps: [
       {
         id: 1,
@@ -269,6 +271,7 @@ const RECIPE_DATA = {
     title: "말차 바닐라라떼",
     coverImage: "assets/thumbnails/matcha_latte.jpg",
     comingSoon: false,
+    preparing: true,
     steps: [
       {
         id: 1,
