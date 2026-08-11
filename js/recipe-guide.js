@@ -250,6 +250,8 @@ const RecipeGuide = (function() {
       const menuCard = e.target.closest('.recipe-guide-menu-card');
       if (menuCard && !menuCard.classList.contains('coming-soon')) {
         const recipeId = menuCard.dataset.recipeId;
+        // 홈 화면에서 새로 선택해 들어올 때는 멈췄던 지점을 초기화하고 처음부터 시작하게 합니다.
+        localStorage.removeItem(STORAGE_KEY + recipeId);
         loadRecipe(recipeId);
       }
       // 다른 음료 선택하기 버튼 (시작 화면에서 홈으로)
