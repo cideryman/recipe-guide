@@ -97,6 +97,18 @@ const RecipeGuide = (function() {
     const app = document.getElementById('recipe-guide-app');
     app.innerHTML = `
       <div class="recipe-guide-container" aria-live="polite">
+        <!-- Timer Modal Overlay -->
+        <div id="rg-timer-modal" class="recipe-guide-timer-modal">
+          <div class="recipe-guide-timer-modal-content">
+            <h2 class="recipe-guide-timer-modal-title">잠시 기다려요</h2>
+            <div id="rg-timer-modal-display" class="recipe-guide-timer-display">00:00</div>
+            <div style="width: 100%; height: 16px; background-color: #E5E7EB; border-radius: 8px; margin: 1.5rem 0; overflow: hidden; position: relative; border: 1px solid #D1D5DB;">
+              <div id="rg-timer-modal-progress" style="width: 100%; height: 100%; background-color: #F59E0B; transition: width 1s linear; border-radius: 8px;"></div>
+            </div>
+            <button id="rg-btn-modal-timer-toggle" class="recipe-guide-btn-timer">기다리기 시작</button>
+          </div>
+        </div>
+
         <!-- Home Screen (Menu Selection) -->
         <div id="rg-screen-home" class="recipe-guide-screen recipe-guide-home"></div>
 
@@ -138,8 +150,8 @@ const RecipeGuide = (function() {
           </div>
 
           <div class="recipe-guide-nav">
-            <button id="rg-btn-prev" class="recipe-guide-btn-prev">이전 단계</button>
-            <button id="rg-btn-next" class="recipe-guide-btn-next">다 했어요</button>
+            <button id="rg-btn-prev" class="recipe-guide-btn-prev">이전</button>
+            <button id="rg-btn-next" class="recipe-guide-btn-next">다음</button>
           </div>
         </div>
 
@@ -171,6 +183,11 @@ const RecipeGuide = (function() {
     els.overview = document.getElementById('rg-screen-overview');
     els.complete = document.getElementById('rg-screen-complete');
     
+    els.timerModal = document.getElementById('rg-timer-modal');
+    els.timerModalDisplay = document.getElementById('rg-timer-modal-display');
+    els.timerModalProgress = document.getElementById('rg-timer-modal-progress');
+    els.btnModalTimerToggle = document.getElementById('rg-btn-modal-timer-toggle');
+
     els.progressText = document.getElementById('rg-progress-text');
     els.progressFill = document.getElementById('rg-progress-fill');
     els.stepContent = document.getElementById('rg-step-content');
@@ -197,6 +214,7 @@ const RecipeGuide = (function() {
       showScreen('step');
     });
     els.btnTtsToggle.addEventListener('click', toggleTts);
+    els.btnModalTimerToggle.addEventListener('click', toggleTimer);
     els.btnGoHome.addEventListener('click', () => {
       stopSpeech();
       stopTimer();
@@ -235,10 +253,6 @@ const RecipeGuide = (function() {
       if (e.target.closest('#rg-btn-start')) {
         showScreen('step');
         renderStep(state.currentStepIndex);
-      }
-      // 타이머 버튼
-      if (e.target.closest('#rg-btn-timer-toggle')) {
-        toggleTimer();
       }
       // 전체 보기 카드
       const card = e.target.closest('.recipe-guide-card');
@@ -318,31 +332,43 @@ const RecipeGuide = (function() {
     ).join('');
 
     // Timer UI if needed
-    let timerHTML = '';
     if (step.type === 'timer') {
       const isCompleted = state.completedSteps.includes(index);
       
       if (!isCompleted) {
         els.btnNext.disabled = true;
+        
+        // 모달 활성화 및 리셋
+        state.timerRemaining = step.duration;
+        if (els.timerModalDisplay) {
+          els.timerModalDisplay.textContent = formatTime(state.timerRemaining);
+          els.timerModalDisplay.style.color = '#D97706';
+        }
+        if (els.timerModalProgress) {
+          els.timerModalProgress.style.width = '100%';
+          els.timerModalProgress.style.backgroundColor = '#F59E0B';
+        }
+        if (els.btnModalTimerToggle) {
+          els.btnModalTimerToggle.textContent = '기다리기 시작';
+          els.btnModalTimerToggle.disabled = false;
+          els.btnModalTimerToggle.style.backgroundColor = '#F59E0B';
+          els.btnModalTimerToggle.style.color = 'white';
+          els.btnModalTimerToggle.classList.remove('stop');
+        }
+        if (els.timerModal) {
+          els.timerModal.classList.add('active');
+        }
       } else {
         els.btnNext.disabled = false;
+        if (els.timerModal) {
+          els.timerModal.classList.remove('active');
+        }
       }
-
-      state.timerRemaining = step.duration;
-      timerHTML = `
-        <div class="recipe-guide-timer-container">
-          <div id="rg-timer-display" class="recipe-guide-timer-display">${formatTime(state.timerRemaining)}</div>
-          <!-- 시간 양적 변화 시각화를 위한 게이지 추가 -->
-          <div style="width: 100%; height: 16px; background-color: #E5E7EB; border-radius: 8px; margin: 1rem 0; overflow: hidden; position: relative; border: 1px solid #D1D5DB;">
-            <div id="rg-timer-progress-fill" style="width: 100%; height: 100%; background-color: #F59E0B; transition: width 1s linear; border-radius: 8px;"></div>
-          </div>
-          <div class="recipe-guide-timer-controls">
-            <button id="rg-btn-timer-toggle" class="recipe-guide-btn-timer">타이머 시작</button>
-          </div>
-        </div>
-      `;
     } else {
       els.btnNext.disabled = false;
+      if (els.timerModal) {
+        els.timerModal.classList.remove('active');
+      }
     }
 
     els.stepContent.innerHTML = `
@@ -354,7 +380,6 @@ const RecipeGuide = (function() {
         <div class="recipe-guide-step-instructions">
           ${instructionsHTML}
         </div>
-        ${timerHTML}
       </div>
     `;
 
@@ -478,41 +503,46 @@ const RecipeGuide = (function() {
   }
 
   function toggleTimer() {
-    const btn = document.getElementById('rg-btn-timer-toggle');
+    const btn = els.btnModalTimerToggle;
     if (!btn) return;
+
+    if (btn.textContent === '확인') {
+      if (els.timerModal) {
+        els.timerModal.classList.remove('active');
+      }
+      els.btnNext.disabled = false;
+      return;
+    }
 
     if (state.isTimerRunning) {
       // 일시정지
       clearInterval(state.timerInterval);
       state.isTimerRunning = false;
-      btn.textContent = '타이머 다시 시작';
+      btn.textContent = '기다리기 다시 시작';
       btn.classList.remove('stop');
     } else {
       // 시작
       if (state.timerRemaining <= 0) {
         state.timerRemaining = state.recipe.steps[state.currentStepIndex].duration;
-        const progressFill = document.getElementById('rg-timer-progress-fill');
-        if (progressFill) {
-          progressFill.style.width = '100%';
-          progressFill.style.backgroundColor = '#F59E0B';
+        if (els.timerModalProgress) {
+          els.timerModalProgress.style.width = '100%';
+          els.timerModalProgress.style.backgroundColor = '#F59E0B';
         }
       }
       
-      btn.textContent = '타이머 일시정지';
+      btn.textContent = '기다리기 일시정지';
       btn.classList.add('stop');
       state.isTimerRunning = true;
       
       state.timerInterval = setInterval(() => {
         state.timerRemaining--;
-        const display = document.getElementById('rg-timer-display');
-        if (display) {
-          display.textContent = formatTime(state.timerRemaining);
+        if (els.timerModalDisplay) {
+          els.timerModalDisplay.textContent = formatTime(state.timerRemaining);
         }
         
-        const progressFill = document.getElementById('rg-timer-progress-fill');
-        if (progressFill) {
+        if (els.timerModalProgress) {
           const duration = state.recipe.steps[state.currentStepIndex].duration;
-          progressFill.style.width = `${(state.timerRemaining / duration) * 100}%`;
+          els.timerModalProgress.style.width = `${(state.timerRemaining / duration) * 100}%`;
         }
         
         if (state.timerRemaining <= 0) {
@@ -529,39 +559,36 @@ const RecipeGuide = (function() {
 
   function timerComplete() {
     stopTimer();
-    const display = document.getElementById('rg-timer-display');
-    const btn = document.getElementById('rg-btn-timer-toggle');
+    const display = els.timerModalDisplay;
+    const btn = els.btnModalTimerToggle;
     
     if (display) {
       display.textContent = "00";
       display.style.color = 'var(--rg-success)';
     }
 
-    const progressFill = document.getElementById('rg-timer-progress-fill');
-    if (progressFill) {
-      progressFill.style.width = '0%';
-      progressFill.style.backgroundColor = 'var(--rg-success)';
+    if (els.timerModalProgress) {
+      els.timerModalProgress.style.width = '0%';
+      els.timerModalProgress.style.backgroundColor = 'var(--rg-success)';
     }
 
     if (btn) {
-      btn.textContent = '다 되었습니다!';
-      btn.disabled = true;
+      btn.textContent = '확인';
+      btn.disabled = false;
       btn.classList.remove('stop');
-      btn.style.backgroundColor = 'var(--rg-success)';
+      btn.style.backgroundColor = 'var(--rg-primary)';
+      btn.style.color = 'white';
     }
 
     // 완료 알림음이나 음성
     if (state.synth) {
-      const utterance = new SpeechSynthesisUtterance("기다리기가 끝났습니다. 하단의 파란색 버튼을 눌러 다음 단계로 넘어가주세요.");
+      const utterance = new SpeechSynthesisUtterance("기다리기가 끝났습니다. 확인 버튼을 눌러주세요.");
       utterance.lang = 'ko-KR';
       state.synth.speak(utterance);
     }
 
     // 다음 단계 버튼 활성화
-    const btnNext = document.getElementById('rg-btn-next');
-    if (btnNext) {
-      btnNext.disabled = false;
-    }
+    els.btnNext.disabled = false;
   }
 
   // Public API
