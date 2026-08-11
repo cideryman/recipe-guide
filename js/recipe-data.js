@@ -1,0 +1,167 @@
+// recipe-data.js
+// 레시피 관련 데이터를 분리하여 관리합니다.
+
+const RECIPE_DATA = {
+  aeropress: {
+    id: "aeropress",
+    title: "에어로프레스 아이스커피",
+    coverImage: "assets/aeropress/step-11.png", // 완성된 컵 이미지를 표지로 사용
+    steps: [
+      {
+        id: 1,
+        title: "물 끓이기",
+        image: "assets/aeropress/step-01.png",
+        instruction: [
+          "전기 주전자에 물을 넣어요.",
+          "전원 버튼을 눌러 물을 끓여요."
+        ],
+        speech: "전기 주전자에 물을 넣고, 전원 버튼을 눌러 물을 끓여주세요.",
+        type: "normal"
+      },
+      {
+        id: 2,
+        title: "커피 무게 재기",
+        image: "assets/aeropress/step-02.png",
+        instruction: [
+          "저울에 원두 컵을 올려요.",
+          "원두 20g을 담아요."
+        ],
+        speech: "저울에 원두 컵을 올리고, 원두 이십 그램을 담아주세요.",
+        type: "normal"
+      },
+      {
+        id: 3,
+        title: "커피 갈기",
+        image: "assets/aeropress/step-03.png",
+        instruction: [
+          "전동 그라인더에 원두를 넣어요.",
+          "스위치를 눌러 원두를 갈아요."
+        ],
+        speech: "전동 그라인더에 원두를 넣고 스위치를 눌러 원두를 갈아주세요.",
+        type: "normal"
+      },
+      {
+        id: 4,
+        title: "필터 준비하기",
+        image: "assets/aeropress/step-04.png",
+        instruction: [
+          "종이 필터를 캡에 끼워요.",
+          "뜨거운 물을 살짝 부어 적셔요."
+        ],
+        speech: "종이 필터를 캡에 끼우고 뜨거운 물을 살짝 부어 적셔주세요.",
+        type: "normal"
+      },
+      {
+        id: 5,
+        title: "에어로프레스 준비하기",
+        image: "assets/aeropress/step-05.png",
+        instruction: [
+          "에어로프레스 본체를 컵 위에 올려요."
+        ],
+        speech: "에어로프레스 본체를 컵 위에 올려주세요.",
+        type: "normal"
+      },
+      {
+        id: 6,
+        title: "얼음 담기",
+        image: "assets/aeropress/step-06.png",
+        instruction: [
+          "준비한 컵에 얼음을 가득 담아요."
+        ],
+        speech: "준비한 컵에 얼음을 가득 담아주세요.",
+        type: "normal"
+      },
+      {
+        id: 7,
+        title: "원두 넣기",
+        image: "assets/aeropress/step-07.png",
+        instruction: [
+          "갈아둔 커피 가루를 에어로프레스 안에 부어요."
+        ],
+        speech: "갈아둔 커피 가루를 에어로프레스 안에 부어주세요.",
+        type: "normal"
+      },
+      {
+        id: 8,
+        title: "물 붓기",
+        image: "assets/aeropress/step-08.png",
+        instruction: [
+          "뜨거운 물 100ml를 천천히 부어요."
+        ],
+        speech: "뜨거운 물 백 밀리리터를 천천히 부어주세요.",
+        type: "normal"
+      },
+      {
+        id: 9,
+        title: "저어주기",
+        image: "assets/aeropress/step-09.png",
+        instruction: [
+          "스틱으로 10번 정도 저어줘요."
+        ],
+        speech: "스틱으로 열 번 정도 저어주세요.",
+        type: "normal"
+      },
+      {
+        id: 10,
+        title: "기다리기",
+        image: "assets/aeropress/step-09.png",
+        instruction: [
+          "60초 동안 기다려요."
+        ],
+        speech: "육십 초 동안 기다려주세요.",
+        type: "timer",
+        duration: 60 // 타이머 단위: 초
+      },
+      {
+        id: 11,
+        title: "천천히 눌러 내리기",
+        image: "assets/aeropress/step-10.png",
+        instruction: [
+          "플런저를 끼우고 30초 동안 천천히 눌러요.",
+          "쉬익 소리가 나면 멈춰요."
+        ],
+        speech: "플런저를 끼우고 삼십 초 동안 천천히 눌러주세요. 쉬익 소리가 나면 멈춰주세요.",
+        type: "normal"
+      },
+      {
+        id: 12,
+        title: "컵에 담아 완성",
+        image: "assets/aeropress/step-11.png",
+        instruction: [
+          "커피가 다 내려졌어요.",
+          "맛있게 즐겨요!"
+        ],
+        speech: "커피가 다 내려졌습니다. 완성!",
+        type: "normal"
+      },
+      {
+        id: 13,
+        title: "정리 - 찌꺼기 버리기",
+        image: "assets/aeropress/step-12.png",
+        instruction: [
+          "캡을 열고 플런저를 끝까지 밀어요.",
+          "커피 찌꺼기를 쓰레기통에 버려요."
+        ],
+        speech: "캡을 열고 플런저를 끝까지 밀어 커피 찌꺼기를 쓰레기통에 버려주세요.",
+        type: "normal"
+      },
+      {
+        id: 14,
+        title: "물로 헹구기",
+        image: "assets/aeropress/step-13.png",
+        instruction: [
+          "사용한 에어로프레스를 물로 깨끗하게 헹궈요."
+        ],
+        speech: "사용한 에어로프레스를 흐르는 물로 깨끗하게 헹궈주세요.",
+        type: "normal"
+      }
+    ]
+  }
+};
+
+// 모듈 환경과 전역 환경 모두에서 사용할 수 있도록 내보냅니다.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = RECIPE_DATA;
+} else {
+  window.RECIPE_DATA = RECIPE_DATA;
+}

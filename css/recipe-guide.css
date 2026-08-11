@@ -1,0 +1,542 @@
+/* ==========================================================================
+   Recipe Guide CSS
+   모든 클래스는 외부 스타일과 충돌을 막기 위해 #recipe-guide-app 내부에 종속됩니다.
+   ========================================================================== */
+
+#recipe-guide-app {
+  /* Variables */
+  --rg-primary: #4F46E5;
+  --rg-primary-hover: #4338CA;
+  --rg-bg: #F9FAFB;
+  --rg-surface: #FFFFFF;
+  --rg-text-main: #111827;
+  --rg-text-muted: #6B7280;
+  --rg-border: #E5E7EB;
+  --rg-success: #10B981;
+  --rg-focus: #6366f1;
+
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--rg-text-main);
+  background-color: var(--rg-bg);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+:where(#recipe-guide-app) * {
+  box-sizing: inherit;
+}
+
+:where(#recipe-guide-app) button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+:where(#recipe-guide-app) button:focus-visible {
+  outline: 3px solid var(--rg-focus);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Common Layouts
+   ========================================================================== */
+.recipe-guide-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 768px; /* 태블릿 최대 너비 */
+  margin: 0 auto;
+  background-color: var(--rg-surface);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.recipe-guide-screen {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  padding-bottom: 80px; /* 네비게이션 바 공간 확보 */
+  overflow-y: auto;
+}
+
+.recipe-guide-screen.active {
+  display: flex;
+  animation: rg-fade-in 0.3s ease-out;
+}
+
+/* ==========================================================================
+   Start Screen
+   ========================================================================== */
+.recipe-guide-start {
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  padding-bottom: 2rem; /* 네비게이션 없으므로 오버라이드 */
+  text-align: center;
+}
+
+.recipe-guide-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: var(--rg-primary);
+  line-height: 1.2;
+}
+
+.recipe-guide-cover-img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+
+.recipe-guide-btn-primary,
+.recipe-guide-btn-secondary {
+  width: 100%;
+  max-width: 300px;
+  min-height: 64px; /* 접근성: 충분한 터치 영역 */
+  border-radius: 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+}
+
+.recipe-guide-btn-primary {
+  background-color: var(--rg-primary);
+  color: white;
+}
+
+.recipe-guide-btn-primary:hover {
+  background-color: var(--rg-primary-hover);
+  transform: translateY(-2px);
+}
+
+.recipe-guide-btn-secondary {
+  background-color: white;
+  color: var(--rg-primary);
+  border: 2px solid var(--rg-primary);
+}
+
+.recipe-guide-btn-secondary:hover {
+  background-color: #EEF2FF;
+}
+
+/* ==========================================================================
+   Step Screen
+   ========================================================================== */
+.recipe-guide-header {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--rg-border);
+}
+
+.recipe-guide-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--rg-text-muted);
+}
+
+.recipe-guide-progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background-color: var(--rg-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.recipe-guide-progress-bar-fill {
+  height: 100%;
+  background-color: var(--rg-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.recipe-guide-step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.recipe-guide-step-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.recipe-guide-step-image-container {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background-color: #f3f4f6;
+  position: relative;
+}
+
+.recipe-guide-step-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.recipe-guide-step-instructions {
+  background-color: #EEF2FF;
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.recipe-guide-instruction-item {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.recipe-guide-instruction-item::before {
+  content: '•';
+  color: var(--rg-primary);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.recipe-guide-instruction-item:last-child {
+  margin-bottom: 0;
+}
+
+.recipe-guide-speech-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: transform 0.2s;
+  z-index: 10;
+}
+
+.recipe-guide-speech-btn:hover {
+  transform: scale(1.1);
+}
+
+.recipe-guide-speech-btn.playing {
+  background-color: var(--rg-primary);
+  color: white;
+  animation: rg-pulse 1.5s infinite;
+}
+
+/* ==========================================================================
+   Timer Component
+   ========================================================================== */
+.recipe-guide-timer-container {
+  background-color: #FFFBEB;
+  border: 2px solid #F59E0B;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.recipe-guide-timer-display {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #D97706;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.recipe-guide-timer-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.recipe-guide-btn-timer {
+  min-width: 120px;
+  min-height: 56px;
+  border-radius: 28px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  background-color: #F59E0B;
+  color: white;
+}
+
+.recipe-guide-btn-timer.stop {
+  background-color: #EF4444;
+}
+
+/* ==========================================================================
+   Navigation (Bottom fixed)
+   ========================================================================== */
+.recipe-guide-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 1rem;
+  background-color: var(--rg-surface);
+  border-top: 1px solid var(--rg-border);
+  gap: 1rem;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05); /* 경계 구분을 위한 그림자 추가 */
+  z-index: 20;
+}
+
+.recipe-guide-btn-prev {
+  flex: 1;
+  min-height: 56px;
+  border-radius: 12px;
+  background-color: #F3F4F6; /* 밝은 회색으로 변경하여 배경과 구분 */
+  color: #374151; /* 진한 글자색 */
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 2px solid #D1D5DB; /* 테두리를 추가하여 버튼임을 명확히 함 */
+}
+
+.recipe-guide-btn-next {
+  flex: 2;
+  min-height: 56px;
+  border-radius: 12px;
+  background-color: var(--rg-primary);
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border: 2px solid var(--rg-primary);
+  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+}
+
+.recipe-guide-btn-next:disabled {
+  background-color: #A5B4FC;
+  border-color: #A5B4FC;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Overview Screen
+   ========================================================================== */
+.recipe-guide-overview {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.recipe-guide-overview-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recipe-guide-btn-close-overview {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--rg-bg);
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.recipe-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.recipe-guide-card {
+  background-color: white;
+  border: 1px solid var(--rg-border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  padding: 0;
+}
+
+.recipe-guide-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-guide-card.completed {
+  border-color: var(--rg-success);
+}
+
+.recipe-guide-card-check {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 24px;
+  height: 24px;
+  background-color: var(--rg-success);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  opacity: 0;
+}
+
+.recipe-guide-card.completed .recipe-guide-card-check {
+  opacity: 1;
+}
+
+.recipe-guide-card-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background-color: #f3f4f6;
+  border-bottom: 1px solid var(--rg-border);
+}
+
+.recipe-guide-card-content {
+  padding: 0.75rem;
+}
+
+.recipe-guide-card-step {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--rg-primary);
+  margin-bottom: 0.25rem;
+}
+
+.recipe-guide-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   Complete Screen
+   ========================================================================== */
+.recipe-guide-complete {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  padding-bottom: 2rem; /* 네비게이션 없으므로 오버라이드 */
+}
+
+.recipe-guide-complete-icon {
+  width: 120px;
+  height: 120px;
+  background-color: #D1FAE5;
+  color: var(--rg-success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  animation: rg-bounce 1s ease infinite;
+}
+
+.recipe-guide-complete-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.recipe-guide-complete-msg {
+  font-size: 1.25rem;
+  color: var(--rg-text-muted);
+  margin-bottom: 3rem;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes rg-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rg-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+@keyframes rg-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recipe-guide-screen.active { animation: none; }
+  .recipe-guide-speech-btn.playing { animation: none; }
+  .recipe-guide-complete-icon { animation: none; }
+  .recipe-guide-card:hover { transform: none; }
+  .recipe-guide-btn-primary:hover { transform: none; }
+}
+
+/* ==========================================================================
+   Responsive adjustments
+   ========================================================================== */
+@media (min-width: 640px) {
+  .recipe-guide-step-title {
+    font-size: 2.5rem;
+  }
+  .recipe-guide-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .recipe-guide-step-content {
+    align-items: center; /* 가운데 정렬 유지 */
+  }
+  .recipe-guide-step-image-container {
+    width: 100%;
+    max-width: 480px; /* 너무 커지지 않도록 제한 */
+    margin-bottom: 2rem;
+  }
+  .recipe-guide-step-details {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+}
