@@ -290,10 +290,10 @@ const RecipeGuide = (function() {
     const recipes = Object.values(window.RECIPE_DATA || {});
     
     const html = `
-      <div class="recipe-guide-home-logo-container">
-        <img src="assets/baedalwatsam/store-logo.png" alt="배달왔삼 로고" class="recipe-guide-home-logo">
-      </div>
-      <h1 class="recipe-guide-main-title">차근차근 카페 레시피</h1>
+      <h1 class="recipe-guide-main-title">
+        차근차근 카페 레시피
+        <img src="assets/baedalwatsam/dalgomi_thumb.png" alt="" class="recipe-guide-main-title-icon">
+      </h1>
       <p class="recipe-guide-main-subtitle">오늘 만들 음료를 선택하세요.</p>
       <div class="recipe-guide-menu-list">
         ${recipes.map(r => `

@@ -5,15 +5,15 @@
 
 #recipe-guide-app {
   /* Variables */
-  --rg-primary: #4F46E5;
-  --rg-primary-hover: #4338CA;
+  --rg-primary: #0D9488;
+  --rg-primary-hover: #0F766E;
   --rg-bg: #F9FAFB;
   --rg-surface: #FFFFFF;
   --rg-text-main: #111827;
   --rg-text-muted: #6B7280;
   --rg-border: #E5E7EB;
   --rg-success: #10B981;
-  --rg-focus: #6366f1;
+  --rg-focus: #14B8A6;
 
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: var(--rg-text-main);
@@ -342,12 +342,12 @@
   font-weight: 700;
   font-size: 1.25rem;
   border: 2px solid var(--rg-primary);
-  box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.3);
 }
 
 .recipe-guide-btn-next:disabled {
-  background-color: #A5B4FC;
-  border-color: #A5B4FC;
+  background-color: #99F6E4;
+  border-color: #99F6E4;
   cursor: not-allowed;
   box-shadow: none;
 }
@@ -516,9 +516,9 @@
 }
 
 @keyframes rg-pulse {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); }
 }
 
 @keyframes rg-bounce {
@@ -573,9 +573,19 @@
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--rg-primary);
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.recipe-guide-main-title-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
 }
 
 .recipe-guide-main-subtitle {
@@ -615,7 +625,7 @@
 .recipe-guide-menu-card:hover:not(.coming-soon) {
   transform: translateY(-2px);
   border-color: var(--rg-primary);
-  box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(13, 148, 136, 0.1);
 }
 
 .recipe-guide-menu-card.coming-soon {
