@@ -5,7 +5,7 @@ const RECIPE_DATA = {
   aeropress: {
     id: "aeropress",
     title: "아메리카노(에어로프레스)",
-    coverImage: "assets/aeropress/step-11.jpg", // 완성된 컵 이미지를 표지로 사용
+    coverImage: "assets/thumbnails/americano.jpg", // 최적화된 썸네일 이미지 사용
     steps: [
       {
         id: 1,
@@ -160,21 +160,21 @@ const RECIPE_DATA = {
   vanillaLatte: {
     id: "vanillaLatte",
     title: "바닐라라떼",
-    coverImage: "https://images.unsplash.com/photo-1595434066389-010f7cb638fa?w=400&q=80",
+    coverImage: "assets/thumbnails/vanilla_latte.jpg",
     comingSoon: true,
     steps: []
   },
   kombucha: {
     id: "kombucha",
     title: "콤부차",
-    coverImage: "https://images.unsplash.com/photo-1594950195709-a14f66c2ade0?w=400&q=80",
+    coverImage: "assets/thumbnails/kombucha.jpg",
     comingSoon: true,
     steps: []
   },
   matchaLatte: {
     id: "matchaLatte",
     title: "말차 바닐라라떼",
-    coverImage: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=400&q=80",
+    coverImage: "assets/thumbnails/matcha_latte.jpg",
     comingSoon: true,
     steps: []
   }
