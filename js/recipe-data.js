@@ -161,22 +161,156 @@ const RECIPE_DATA = {
     id: "vanillaLatte",
     title: "바닐라라떼",
     coverImage: "assets/thumbnails/vanilla_latte.jpg",
-    comingSoon: true,
-    steps: []
+    comingSoon: false,
+    steps: [
+      {
+        id: 1,
+        title: "컵 준비하기",
+        image: "assets/thumbnails/vanilla_latte.jpg",
+        instruction: [
+          "깨끗한 유리컵을 준비해요."
+        ],
+        speech: "깨끗한 유리컵을 준비해주세요.",
+        type: "normal"
+      },
+      {
+        id: 2,
+        title: "시럽과 우유 담기",
+        image: "assets/thumbnails/vanilla_latte.jpg",
+        instruction: [
+          "바닐라 시럽 2펌프와 우유 150ml를 부어요."
+        ],
+        speech: "바닐라 시럽 두 펌프와 우유 백 오십 밀리리터를 부어주세요.",
+        type: "normal"
+      },
+      {
+        id: 3,
+        title: "에스프레소 넣기",
+        image: "assets/thumbnails/vanilla_latte.jpg",
+        instruction: [
+          "추출한 에스프레소 샷을 천천히 부어줘요."
+        ],
+        speech: "추출한 에스프레소 샷을 천천히 부어주세요.",
+        type: "normal"
+      },
+      {
+        id: 4,
+        title: "컵에 담아 완성",
+        image: "assets/thumbnails/vanilla_latte.jpg",
+        instruction: [
+          "바닐라라떼가 완성되었습니다. 맛있게 즐겨요!"
+        ],
+        speech: "바닐라라떼가 완성되었습니다. 맛있게 즐겨보세요!",
+        type: "normal"
+      }
+    ]
   },
   kombucha: {
     id: "kombucha",
     title: "콤부차",
     coverImage: "assets/thumbnails/kombucha.jpg",
-    comingSoon: true,
-    steps: []
+    comingSoon: false,
+    steps: [
+      {
+        id: 1,
+        title: "컵에 얼음 담기",
+        image: "assets/thumbnails/kombucha.jpg",
+        instruction: [
+          "컵에 얼음을 가득 담아요."
+        ],
+        speech: "컵에 얼음을 가득 담아주세요.",
+        type: "normal"
+      },
+      {
+        id: 2,
+        title: "탄산수 붓기",
+        image: "assets/thumbnails/kombucha.jpg",
+        instruction: [
+          "탄산수를 컵의 80% 높이까지 채워요."
+        ],
+        speech: "탄산수를 컵의 팔십 퍼센트 높이까지 채워주세요.",
+        type: "normal"
+      },
+      {
+        id: 3,
+        title: "콤부차 원액 넣기",
+        image: "assets/thumbnails/kombucha.jpg",
+        instruction: [
+          "콤부차 액상 원액을 천천히 부어요."
+        ],
+        speech: "콤부차 액상 원액을 천천히 부어주세요.",
+        type: "normal"
+      },
+      {
+        id: 4,
+        title: "기다리기",
+        image: "assets/thumbnails/kombucha.jpg",
+        instruction: [
+          "탄산이 가라앉을 때까지 10초 동안 기다려요."
+        ],
+        speech: "탄산이 가라앉을 때까지 십 초 동안 기다려주세요.",
+        type: "timer",
+        duration: 10
+      },
+      {
+        id: 5,
+        title: "시원하게 완성",
+        image: "assets/thumbnails/kombucha.jpg",
+        instruction: [
+          "시원한 콤부차가 완성되었습니다!"
+        ],
+        speech: "시원한 콤부차가 완성되었습니다!",
+        type: "normal"
+      }
+    ]
   },
   matchaLatte: {
     id: "matchaLatte",
     title: "말차 바닐라라떼",
     coverImage: "assets/thumbnails/matcha_latte.jpg",
-    comingSoon: true,
-    steps: []
+    comingSoon: false,
+    steps: [
+      {
+        id: 1,
+        title: "말차 준비하기",
+        image: "assets/thumbnails/matcha_latte.jpg",
+        instruction: [
+          "말차 가루 3g을 따뜻한 물에 덩어리 없이 잘 개어줘요."
+        ],
+        speech: "말차 가루 삼 그램을 따뜻한 물에 덩어리 없이 잘 개어주세요.",
+        type: "normal"
+      },
+      {
+        id: 2,
+        title: "컵에 시럽과 우유 담기",
+        image: "assets/thumbnails/matcha_latte.jpg",
+        instruction: [
+          "바닐라 시럽 1펌프와 차가운 우유 120ml를 넣어요."
+        ],
+        speech: "바닐라 시럽 한 펌프와 차가운 우유 백 이십 밀리리터를 넣어주세요.",
+        type: "normal"
+      },
+      {
+        id: 3,
+        title: "말차 붓기",
+        image: "assets/thumbnails/matcha_latte.jpg",
+        instruction: [
+          "준비한 말차 액을 우유 위에 천천히 부어 층을 만들어요."
+        ],
+        speech: "준비한 말차 액을 우유 위에 천천히 부어 아름다운 층을 만들어주세요.",
+        type: "normal"
+      },
+      {
+        id: 4,
+        title: "완성",
+        image: "assets/thumbnails/matcha_latte.jpg",
+        instruction: [
+          "말차 바닐라라떼가 완성되었습니다!"
+        ],
+        speech: "말차 바닐라라떼가 완성되었습니다!",
+        type: "normal"
+      }
+    ]
   }
 };
 
