@@ -276,55 +276,131 @@ const RECIPE_DATA = {
       }
     ]
   },
-  vanillaLatte: {
-    id: "vanillaLatte",
-    title: "바닐라라떼",
-    coverImage: "assets/thumbnails/vanilla_latte.jpg",
+  iceVanillaLatte: {
+    id: "iceVanillaLatte",
+    title: "아이스 바닐라라떼(아바라)",
+    coverImage: "assets/iceVanillaLatte/cover.webp",
     comingSoon: false,
-    preparing: true,
+    preparing: false,
     steps: [
       {
         id: 1,
         title: "컵 준비하기",
-        image: "assets/thumbnails/vanilla_latte.jpg",
+        image: "assets/iceVanillaLatte/step-01.webp",
         instruction: [
-          "깨끗한 유리컵을 준비해요."
+          "빈 테이크아웃 컵을 하나 준비해요.",
+          "컵을 작업대 한가운데에 놓아요."
         ],
-        speech: "깨끗한 유리컵을 준비해주세요.",
+        speech: "빈 테이크아웃 컵을 하나 준비해서 작업대 한가운데에 놓아주세요.",
         type: "normal"
       },
       {
         id: 2,
-        title: "시럽과 우유 담기",
-        image: "assets/thumbnails/vanilla_latte.jpg",
+        title: "바닐라라떼 준비하기",
+        image: "assets/iceVanillaLatte/step-02.webp",
         instruction: [
-          "바닐라 시럽 2펌프와 우유 150ml를 부어요."
+          "바닐라라떼 파우더 스틱 2개를 준비해요.",
+          "스틱이 2개인지 확인해요."
         ],
-        speech: "바닐라 시럽 두 펌프와 우유 백 오십 밀리리터를 부어주세요.",
+        speech: "바닐라라떼 파우더 스틱 두 개를 준비해 주세요. 스틱이 두 개가 맞는지 꼭 확인해 보세요.",
         type: "normal"
       },
       {
         id: 3,
-        title: "에스프레소 넣기",
-        image: "assets/thumbnails/vanilla_latte.jpg",
+        title: "스틱 뜯기",
+        image: "assets/iceVanillaLatte/step-03.webp",
         instruction: [
-          "추출한 에스프레소 샷을 천천히 부어줘요."
+          "스틱 윗부분의 자르는 선을 찾아요.",
+          "양손으로 잡고 힘을 주어 찢어서 열어요.",
+          "스틱 2개 모두 뜯어 놓아요."
         ],
-        speech: "추출한 에스프레소 샷을 천천히 부어주세요.",
+        speech: "스틱 윗부분의 자르는 선을 찾아서, 양손으로 힘을 주어 찢어서 열어주세요. 두 개 모두 똑같이 뜯어 줍니다.",
         type: "normal"
       },
       {
         id: 4,
-        title: "컵에 담아 완성",
-        image: "assets/thumbnails/vanilla_latte.jpg",
+        title: "바닐라라떼 넣기",
+        image: "assets/iceVanillaLatte/step-04.webp",
         instruction: [
-          "바닐라라떼가 완성되었습니다. 맛있게 즐겨요!"
+          "봉투를 기울여 컵에 분말을 넣어요.",
+          "가루가 남지 않도록 컵 안에 탈탈 털어 넣어요.",
+          "스틱 2개 분량을 모두 넣어요."
         ],
-        speech: "바닐라라떼가 완성되었습니다. 맛있게 즐겨보세요!",
+        speech: "스틱을 기울여 컵 안에 분말 가루를 남김없이 탈탈 털어 넣어주세요. 두 봉지 가루를 모두 컵에 넣어 줍니다.",
+        type: "normal"
+      },
+      {
+        id: 5,
+        title: "뜨거운 물 넣기",
+        image: "assets/iceVanillaLatte/step-05.webp",
+        instruction: [
+          "뜨거운 물을 사용할 때 화상을 조심해요.",
+          "계량컵의 빨간 표시선(80mL)까지 뜨거운 물을 받아요.",
+          "받은 물을 컵에 모두 부어줘요."
+        ],
+        speech: "뜨거운 물을 조심해서 계량컵의 빨간 표시선까지 받아 컵에 모두 부어주세요. 뜨거우니 손 조심하세요.",
+        type: "normal"
+      },
+      {
+        id: 6,
+        title: "잘 저어주기",
+        image: "assets/iceVanillaLatte/step-06.webp",
+        instruction: [
+          "숟가락으로 컵 바닥까지 깊게 저어요.",
+          "바닥에 가루 덩어리가 안 보일 때까지 완전히 녹여줘요."
+        ],
+        speech: "숟가락으로 컵 바닥까지 깊게 저어주세요. 바닥에 가루 덩어리가 완전히 안 보일 때까지 충분히 저어서 녹여줍니다.",
+        type: "normal"
+      },
+      {
+        id: 7,
+        title: "얼음 넣기",
+        image: "assets/iceVanillaLatte/step-07.webp",
+        instruction: [
+          "얼음 스쿱으로 얼음을 담아 컵에 넣어요.",
+          "물이 튀지 않게 컵 입구 가까이 대고 넣어요.",
+          "얼음을 컵에 가득 채워요."
+        ],
+        speech: "얼음 스쿱으로 얼음을 담아, 물이 튀지 않게 컵 입구 가까이에서 넣어주세요. 얼음으로 컵을 가득 채워 줍니다.",
+        type: "normal"
+      },
+      {
+        id: 8,
+        title: "찬물 채우기",
+        image: "assets/iceVanillaLatte/step-08.webp",
+        instruction: [
+          "물병을 기울여 컵에 찬물을 채워요.",
+          "컵 옆면에 표시된 초록색 가이드선까지 찬물을 채워요."
+        ],
+        speech: "물병을 기울여 컵 옆면에 표시된 초록색 가이드선까지만 찬물을 채워 부어주세요.",
+        type: "normal"
+      },
+      {
+        id: 9,
+        title: "한 번 더 저어주기",
+        image: "assets/iceVanillaLatte/step-09.webp",
+        instruction: [
+          "숟가락으로 가볍게 섞어요.",
+          "천천히 2번에서 3번만 살짝 돌려줘요."
+        ],
+        speech: "숟가락으로 음료를 가볍게 섞기 위해 천천히 두 번에서 세 번 정도만 살짝 저어주세요.",
+        type: "normal"
+      },
+      {
+        id: 10,
+        title: "뚜껑 닫고 완성하기",
+        image: "assets/iceVanillaLatte/step-10.webp",
+        instruction: [
+          "뚜껑을 컵 위에 똑바로 올려놓아요.",
+          "딸깍! 소리가 날 때까지 가장자리를 꾹 눌러 닫아요.",
+          "맛있는 바닐라라떼가 완성되었습니다!"
+        ],
+        speech: "뚜껑을 컵 위에 똑바로 올려놓고, 딸깍 소리가 날 때까지 가장자리를 꾹 눌러 닫아서 완성해 주세요.",
         type: "normal"
       }
     ]
   },
+
   matchaLatte: {
     id: "matchaLatte",
     title: "말차 바닐라라떼",
