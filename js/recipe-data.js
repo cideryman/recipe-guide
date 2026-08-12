@@ -157,6 +157,125 @@ const RECIPE_DATA = {
       }
     ]
   },
+  kombucha: {
+    id: "kombucha",
+    title: "콤부차",
+    coverImage: "assets/thumbnails/kombucha.jpg",
+    comingSoon: false,
+    preparing: false,
+    steps: [
+      {
+        id: 1,
+        title: "컵 준비하기",
+        image: "assets/kombucha/step-01.jpg",
+        instruction: [
+          "빈 테이크아웃 컵을 하나 준비해요.",
+          "컵을 작업대 한가운데에 놓아요."
+        ],
+        speech: "빈 테이크아웃 컵을 하나 준비해서 작업대 한가운데에 놓아주세요.",
+        type: "normal"
+      },
+      {
+        id: 2,
+        title: "콤부차 준비하기",
+        image: "assets/kombucha/step-02.jpg",
+        instruction: [
+          "5g 콤부차 봉투 1개를 준비해요.",
+          "흰색 무지 봉투 1개만 골라요."
+        ],
+        speech: "오 그램짜리 콤부차 봉투 한 개를 준비해 주세요.",
+        type: "normal"
+      },
+      {
+        id: 3,
+        title: "콤부차 뜯기",
+        image: "assets/kombucha/step-03.jpg",
+        instruction: [
+          "봉투 윗부분의 자르는 선을 찾아요.",
+          "양손으로 잡고 힘을 주어 찢어서 열어요."
+        ],
+        speech: "봉투 윗부분의 자르는 선을 찾아서, 양손으로 잡고 힘을 주어 찢어서 열어주세요.",
+        type: "normal"
+      },
+      {
+        id: 4,
+        title: "콤부차 넣기",
+        image: "assets/kombucha/step-04.jpg",
+        instruction: [
+          "봉투를 기울여 컵에 분말을 넣어요.",
+          "가루가 남지 않도록 컵 안에 탈탈 털어 넣어요."
+        ],
+        speech: "봉투를 기울여 컵 안에 분말을 남김없이 탈탈 털어 넣어주세요.",
+        type: "normal"
+      },
+      {
+        id: 5,
+        title: "물 조금 넣기",
+        image: "assets/kombucha/step-05.jpg",
+        instruction: [
+          "물병을 기울여 컵에 물을 부어요.",
+          "컵 맨 아래의 표시선까지만 조금 부어요."
+        ],
+        speech: "물병을 기울여 컵 맨 아래의 표시선까지만 물을 조금 부어주세요.",
+        type: "normal"
+      },
+      {
+        id: 6,
+        title: "잘 저어주기",
+        image: "assets/kombucha/step-06.jpg",
+        instruction: [
+          "스푼으로 컵 바닥까지 저어요.",
+          "바닥에 가루가 완전히 안 보일 때까지 저어요."
+        ],
+        speech: "스푼으로 컵 바닥까지 저어주세요. 바닥에 가루가 완전히 안 보일 때까지 저어주시면 됩니다.",
+        type: "normal"
+      },
+      {
+        id: 7,
+        title: "얼음 넣기",
+        image: "assets/kombucha/step-07.jpg",
+        instruction: [
+          "얼음 스쿱을 사용하여 컵에 얼음을 넣어요.",
+          "물이 튀지 않게 컵 입구 가까이에서 넣어요."
+        ],
+        speech: "얼음 스쿱으로 얼음을 담아, 물이 튀지 않게 컵 입구 가까이에서 넣어주세요.",
+        type: "normal"
+      },
+      {
+        id: 8,
+        title: "물 채우기",
+        image: "assets/kombucha/step-08.jpg",
+        instruction: [
+          "물병을 기울여 컵에 물을 채워요.",
+          "컵 옆면에 표시된 파란색 선까지만 물을 채워요."
+        ],
+        speech: "물병을 기울여 컵 옆면에 표시된 파란색 가이드라인 선까지만 물을 부어 채워주세요.",
+        type: "normal"
+      },
+      {
+        id: 9,
+        title: "한 번 더 저어주기",
+        image: "assets/kombucha/step-09.jpg",
+        instruction: [
+          "스푼으로 얼음과 음료를 가볍게 섞어요.",
+          "천천히 2번에서 3번만 가볍게 돌려줘요."
+        ],
+        speech: "스푼으로 얼음과 음료를 가볍게 섞기 위해 천천히 두 번에서 세 번 정도만 가볍게 저어주세요.",
+        type: "normal"
+      },
+      {
+        id: 10,
+        title: "뚜껑 닫고 완성하기",
+        image: "assets/kombucha/step-10.jpg",
+        instruction: [
+          "뚜껑을 컵 위에 똑바로 올려놓아요.",
+          "딸깍! 소리가 날 때까지 가장자리를 꾹 눌러 닫아요."
+        ],
+        speech: "뚜껑을 컵 위에 똑바로 올려놓고, 딸깍 소리가 날 때까지 가장자리를 꾹 눌러 닫아서 완성해 주세요.",
+        type: "normal"
+      }
+    ]
+  },
   vanillaLatte: {
     id: "vanillaLatte",
     title: "바닐라라떼",
@@ -202,66 +321,6 @@ const RECIPE_DATA = {
           "바닐라라떼가 완성되었습니다. 맛있게 즐겨요!"
         ],
         speech: "바닐라라떼가 완성되었습니다. 맛있게 즐겨보세요!",
-        type: "normal"
-      }
-    ]
-  },
-  kombucha: {
-    id: "kombucha",
-    title: "콤부차",
-    coverImage: "assets/thumbnails/kombucha.jpg",
-    comingSoon: false,
-    preparing: true,
-    steps: [
-      {
-        id: 1,
-        title: "컵에 얼음 담기",
-        image: "assets/thumbnails/kombucha.jpg",
-        instruction: [
-          "컵에 얼음을 가득 담아요."
-        ],
-        speech: "컵에 얼음을 가득 담아주세요.",
-        type: "normal"
-      },
-      {
-        id: 2,
-        title: "탄산수 붓기",
-        image: "assets/thumbnails/kombucha.jpg",
-        instruction: [
-          "탄산수를 컵의 80% 높이까지 채워요."
-        ],
-        speech: "탄산수를 컵의 팔십 퍼센트 높이까지 채워주세요.",
-        type: "normal"
-      },
-      {
-        id: 3,
-        title: "콤부차 원액 넣기",
-        image: "assets/thumbnails/kombucha.jpg",
-        instruction: [
-          "콤부차 액상 원액을 천천히 부어요."
-        ],
-        speech: "콤부차 액상 원액을 천천히 부어주세요.",
-        type: "normal"
-      },
-      {
-        id: 4,
-        title: "기다리기",
-        image: "assets/thumbnails/kombucha.jpg",
-        instruction: [
-          "탄산이 가라앉을 때까지 10초 동안 기다려요."
-        ],
-        speech: "탄산이 가라앉을 때까지 십 초 동안 기다려주세요.",
-        type: "timer",
-        duration: 10
-      },
-      {
-        id: 5,
-        title: "시원하게 완성",
-        image: "assets/thumbnails/kombucha.jpg",
-        instruction: [
-          "시원한 콤부차가 완성되었습니다!"
-        ],
-        speech: "시원한 콤부차가 완성되었습니다!",
         type: "normal"
       }
     ]
