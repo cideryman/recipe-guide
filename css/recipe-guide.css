@@ -90,9 +90,15 @@
 .recipe-guide-title {
   font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
   color: var(--rg-primary);
   line-height: 1.2;
+}
+
+.recipe-guide-start-badges {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
 }
 
 .recipe-guide-cover-img {
@@ -668,6 +674,13 @@
   gap: 0.5rem;
 }
 
+.recipe-guide-menu-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
 .recipe-guide-menu-title {
   font-size: 1.25rem;
   font-weight: 800;
@@ -690,6 +703,28 @@
   background-color: #CCFBF1;
   color: var(--rg-primary);
   border: 1px solid #99F6E4;
+}
+
+.recipe-guide-temp-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  align-self: flex-start;
+  line-height: 1.2;
+  border: 1px solid transparent;
+}
+
+.recipe-guide-temp-badge.ice {
+  background-color: #DBEAFE;
+  color: #1D4ED8;
+  border-color: #BFDBFE;
+}
+
+.recipe-guide-temp-badge.hot {
+  background-color: #FFEDD5;
+  color: #C2410C;
+  border-color: #FED7AA;
 }
 
 .recipe-guide-btn-text {

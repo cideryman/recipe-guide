@@ -314,9 +314,12 @@ const RecipeGuide = (function() {
             <img src="${r.comingSoon ? 'assets/baedalwatsam/closed-character.png' : r.coverImage}" alt="" class="recipe-guide-menu-img" onerror="this.src='https://placehold.co/150?text=Image'">
             <div class="recipe-guide-menu-info">
               <h2 class="recipe-guide-menu-title">${r.title}</h2>
-              ${r.comingSoon || r.preparing ? 
-                '<span class="recipe-guide-badge">준비 중</span>' : 
-                '<span class="recipe-guide-badge active">바로 시작</span>'}
+              <div class="recipe-guide-menu-badges">
+                ${r.temperature ? `<span class="recipe-guide-temp-badge ${r.temperature}">${r.temperature === 'hot' ? '따뜻하게' : '아이스'}</span>` : ''}
+                ${r.comingSoon || r.preparing ? 
+                  '<span class="recipe-guide-badge">준비 중</span>' : 
+                  '<span class="recipe-guide-badge active">바로 시작</span>'}
+              </div>
             </div>
           </button>
         `).join('')}
@@ -328,6 +331,7 @@ const RecipeGuide = (function() {
   function renderStart() {
     els.start.innerHTML = `
       <h1 class="recipe-guide-title">${state.recipe.title}</h1>
+      ${state.recipe.temperature ? `<div class="recipe-guide-start-badges"><span class="recipe-guide-temp-badge ${state.recipe.temperature}">${state.recipe.temperature === 'hot' ? '따뜻하게' : '아이스'}</span></div>` : ''}
       <img src="${state.recipe.coverImage}" alt="완성된 ${state.recipe.title}" class="recipe-guide-cover-img" onerror="this.src='https://placehold.co/400?text=Image'">
       <button id="rg-btn-start" class="recipe-guide-btn-primary">시작하기</button>
       <button class="recipe-guide-btn-secondary" onclick="document.getElementById('rg-btn-show-overview').click()">전체 순서 보기</button>
